@@ -1,9 +1,9 @@
-You registered with the FrOSCon-Projects interface.
+You registered with the Make-Munich Projects interface.
 
 Please use the following link to activate your account:
 
-https://callforprojects.froscon.de/accounts/activate/{{activation_key}}
+https://sabot.mm.derchris.eu/accounts/activate/{{activation_key}}
 
 Best Regards,
 
-Your FrOSCon-Team
+Your Make-Munich Team
