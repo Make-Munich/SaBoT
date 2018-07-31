@@ -36,7 +36,7 @@
 				<td>{{project.owner.email}}</td>
 				<td>
 					{% if project.descriptionDE != "" and project.descriptionEN != "" %}<a href="{% url 'exhibitor_update_texts' pk=project.pk %}" data-toggle="tooltip" title="Texts in DE and EN available"><span class="glyphicon glyphicon-globe"></span></a>{% endif %}
-					{% if project.boothNumTables and project.boothNumChairs %}<a href="{% url 'exhibitor_update_booth' pk=project.pk %}" data-toggle="tooltip" title="Booth information available"><span class="glyphicon glyphicon-home"></span></a>{% endif %}
+					{% if project.boothNumTables and project.boothNumChairs and project.boothPower and project.boothArea %}<a href="{% url 'exhibitor_update_booth' pk=project.pk %}" data-toggle="tooltip" title="Booth information available"><span class="glyphicon glyphicon-home"></span></a>{% endif %}
 					{% if project.participants.all %}<a href="{% url 'exhibitor_participants' pk=project.pk %}" data-toggle="tooltip" title="Participants available"><span class="glyphicon glyphicon-user"></span></a>{% endif %}
 				</td>
 				<td>{{project.modifyDate|date:"j.n.Y"}}</td>

@@ -27,7 +27,10 @@ class Exhibitor(models.Model):
 	boothPreferedLocation = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Do you have a preferred location for your booth?"), default=PREFERENCE_NO_PREF)
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
-	boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+        boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
+        boothArea = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Which area is your booth in?"), default=PREFERENCE_NO_PREF)
+
+        boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
 	participants = models.ManyToManyField(User,blank=True,editable=False,related_name="exhibitorparticipation", through="ExhibitorParticipants")
 	accepted = models.BooleanField(default=False, editable=False)
