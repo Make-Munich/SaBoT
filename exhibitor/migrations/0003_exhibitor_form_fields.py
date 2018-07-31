@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='exhibitor',
             name='boothArea',
- >>         field=models.PositiveIntegerField(choices=[(1, b'Electronics'), (2, b'3D Printing'), (0, b'No preference')], default=0, verbose_name='Which area is your booth in?'),
+            field=models.PositiveIntegerField(choices=[(1, b'Electronics'), (2, b'3D Printing'), (0, b'No preference')], default=0, verbose_name='Which area is your booth in?'),
             preserve_default=False,
         ),
     ]
