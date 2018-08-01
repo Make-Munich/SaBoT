@@ -1,15 +1,46 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
-PREFERENCE_MENSA = 1
-PREFERENCE_FIRST_FLOOR = 2
-PREFERENCE_NO_PREF = 0
+from multiselectfield import MultiSelectField
 
 PREFERENCES = (
-	(PREFERENCE_MENSA, "Mensa"),
-	(PREFERENCE_FIRST_FLOOR, "First Floor"),
-	(PREFERENCE_NO_PREF, "No preference"),
+        (1, "Main Floor"),
+        (2, "Stage"),
+        (0, "No preference"),
+)
+
+AREAS = (
+        (1, "3D Printing"),
+        (2, "Arduino"),
+        (3, "Art"),
+        (4, "Biohacking"),
+        (5, "Bionics"),
+        (6, "Crafts"),
+        (7, "Design"),
+        (8, "Digital Fabrication"),
+        (9, "Education"),
+        (10, "Electronics"),
+        (11, "Fashion"),
+        (12, "Food & Agriculture"),
+        (13, "Garden"),
+        (14, "Healthcare"),
+        (15, "Home Automation"),
+        (16, "Interaction"),
+        (17, "Internet of Things"),
+        (18, "Model Making"),
+        (19, "New Materials"),
+        (20, "Raspberry Pi"),
+        (21, "Robot & Drones"),
+        (22, "Science"),
+        (23, "Social design"),
+        (24, "Sustainability"),
+        (25, "Startup / Small Business"),
+        (26, "Tiny Houses"),
+        (27, "Transportation"),
+        (28, "Wearables"),
+        (29, "Wellness"),
+        (30, "Young Makers"),
+        (31, "Other"),
 )
 
 class Exhibitor(models.Model):
@@ -28,8 +59,7 @@ class Exhibitor(models.Model):
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
-        boothArea = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Which area is your booth in?"), default=PREFERENCE_NO_PREF)
-
+        boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
 	participants = models.ManyToManyField(User,blank=True,editable=False,related_name="exhibitorparticipation", through="ExhibitorParticipants")
