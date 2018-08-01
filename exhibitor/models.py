@@ -55,7 +55,7 @@ class Exhibitor(models.Model):
 	descriptionEN = models.TextField(blank=True, verbose_name=_("Description text of your project (English)"))
 
 
-	boothPreferedLocation = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Do you have a preferred location for your booth?"), default=PREFERENCE_NO_PREF)
+	boothPreferedLocation = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Do you have a preferred location for your booth?"), default=0)
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
