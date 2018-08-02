@@ -20,8 +20,6 @@ urlpatterns = [
 ########## MULTIYEAR SUPPORT #############
 	url(r"^setYear/(?P<year>\d{4})$", login_required(setActiveYearView)),
 
-	url(r'^saml2/', include('djangosaml2.urls')),
-
 ############ INCLUDE APPS ################
 	url(r'^accounts/', include('account.urls')),
 	url(r'^accounts/', include('registration.backends.model_activation.urls')),
@@ -38,6 +36,7 @@ urlpatterns = [
 	#url(r'^ticket/', include('ticket.urls')),
 	url(r'^documenttemplate/', include('invoice.urls_documenttemplate')),
 	url(r'^invoice/', include('invoice.urls_invoice')),
+	url(r'^saml2/', include('djangosaml2.urls')),
 ]
 
 if settings.LOCAL:
