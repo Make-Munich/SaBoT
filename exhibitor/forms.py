@@ -71,7 +71,7 @@ class ExhibitorBoothForm(forms.ModelForm):
 			Field("boothNumChairs"),
                         Field("boothPower"),
                         Field("boothArea"),
-			Field("boothComment"),
+			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))

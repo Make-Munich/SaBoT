@@ -20,6 +20,7 @@ urlpatterns = [
 ########## MULTIYEAR SUPPORT #############
 	url(r"^setYear/(?P<year>\d{4})$", login_required(setActiveYearView)),
 
+	url(r'^saml2/', include('djangosaml2.urls')),
 
 ############ INCLUDE APPS ################
 	url(r'^accounts/', include('account.urls')),
