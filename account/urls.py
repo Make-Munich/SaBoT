@@ -16,7 +16,7 @@ from account.models import UserProfile
 
 urlpatterns = [
 	url(r'^token/(?P<token>[0-9a-z]+)$', TokenLoginView.as_view(), name="auth_token"),
-	url(r'^profile$', login_required(UserProfileView.as_view()), name="auth_user_profile"),
+	url(r'^profile/?$', login_required(UserProfileView.as_view()), name="auth_user_profile"),
 	url(r'^activatepw/(?P<activation_key>\w+)/$', ActivateAndSetPWView.as_view(), name="auth_activate_pw"),
 	url(r'^register/?$', RegistrationView.as_view(
 							form_class=RegistrationFormNameAndUniqueEmail),
