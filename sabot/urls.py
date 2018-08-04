@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 from main.views import OverviewView, WayfinderView
 from sabot.multiYear import setActiveYearView
 
+from djangosaml2 import views as djangosaml2_views
+
 urlpatterns = [
 ############# PORTAL PAGE #################
 
@@ -37,7 +39,7 @@ urlpatterns = [
 	url(r'^documenttemplate/', include('invoice.urls_documenttemplate')),
 	url(r'^invoice/', include('invoice.urls_invoice')),
 	url(r'^saml2/', include('djangosaml2.urls')),
-	url(r'^saml2test/', include('djangosaml2.views.echo_attributes')),
+	url(r'^saml2test/', djangosaml2_views.echo_attributes, name='echo_attributes'),
 ]
 
 if settings.LOCAL:
