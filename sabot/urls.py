@@ -37,7 +37,7 @@ urlpatterns = [
 	url(r'^documenttemplate/', include('invoice.urls_documenttemplate')),
 	url(r'^invoice/', include('invoice.urls_invoice')),
 	url(r'^saml2/', include('djangosaml2.urls')),
-	url(r'^saml2test/', 'djangosaml2.views.echo_attributes'),
+	url(r'^saml2test/', include('djangosaml2.views.echo_attributes')),
 ]
 
 if settings.LOCAL:
