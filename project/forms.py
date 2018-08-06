@@ -79,7 +79,7 @@ class ProjectBoothForm(forms.ModelForm):
 class ProjectTalkForm(forms.ModelForm):
 	class Meta:
 		model = Project
-		fields = ("talkComment")
+		fields = ("talkComment",)
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
@@ -93,7 +93,7 @@ class ProjectTalkForm(forms.ModelForm):
 class ProjectWorkshopForm(forms.ModelForm):
 	class Meta:
 		model = Project
-		fields = ("workshopComment")
+		fields = ("workshopComment",)
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectWorkshopForm, self).__init__(*args, **kwargs)
