@@ -4,12 +4,14 @@
 
 {% block content %}
 
-{% include "exhibitor/alltabshead.html" %}
+{% include "project/alltabshead.html" %}
 
 <ul class="nav nav-tabs nav-tabs-bordered">
-	<li><a href="{% url 'exhibitor_update_general' pk=project.pk %}">General</a><li>
-	<li><a href="{% url 'exhibitor_update_texts' pk=project.pk %}">Description texts</a><li>
-	<li><a href="{% url 'exhibitor_update_booth' pk=project.pk %}">Booth</a><li>
+	<li><a href="{% url 'project_update_general' pk=project.pk %}">General</a><li>
+	<li><a href="{% url 'project_update_texts' pk=project.pk %}">Description texts</a><li>
+	<li><a href="{% url 'project_update_booth' pk=project.pk %}">Booth</a><li>
+	<li><a href="{% url 'project_update_talk' pk=object.pk %}">Talk</a><li>
+	<li><a href="{% url 'project_update_workshop' pk=object.pk %}">Workshop</a><li>
 	<li class="active"><a href="#">Participants</a><li>
 </ul>
 
@@ -64,17 +66,17 @@
 					</td>
 					<td>
 						{% if not readonly %}
-						<form action="{% url 'exhibitor_participants_delete' pk=part.pk %}" method="POST" style="display: inline">
+						<form action="{% url 'project_participants_delete' pk=part.pk %}" method="POST" style="display: inline">
 							{% csrf_token %}
 							<button data-toggle="tooltip" title="Remove this user"><span class="glyphicon glyphicon-remove"></span></button>
 						</form>
 						{% if part.isAdmin %}
-							<form action="{% url 'exhibitor_participants_revoke_admin' pk=part.pk %}" method="post" style="display: inline">
+							<form action="{% url 'project_participants_revoke_admin' pk=part.pk %}" method="post" style="display: inline">
 								{% csrf_token %}
 								<button data-toggle="tooltip" title="Remove edit privileges for this user"><span class="glyphicon glyphicon-star-empty"></span></button>
 							</form>
 						{% else %}
-							<form action="{% url 'exhibitor_participants_make_admin' pk=part.pk %}" method="post" style="display: inline">
+							<form action="{% url 'project_participants_make_admin' pk=part.pk %}" method="post" style="display: inline">
 								{% csrf_token %}
 								<button data-toggle="tooltip" title="Enable this user to edit project settings"><span class="glyphicon glyphicon-star"></span></button>
 							</form>

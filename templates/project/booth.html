@@ -3,13 +3,15 @@
 
 {% block content %}
 
-{% include "exhibitor/alltabshead.html" %}
+{% include "project/alltabshead.html" %}
 
 <ul class="nav nav-tabs nav-tabs-bordered">
-	<li><a href="{% url 'exhibitor_update_general' pk=object.pk %}">General</a><li>
-	<li><a href="{% url 'exhibitor_update_texts' pk=object.pk %}">Description texts</a><li>
+	<li><a href="{% url 'project_update_general' pk=object.pk %}">General</a><li>
+	<li><a href="{% url 'project_update_texts' pk=object.pk %}">Description texts</a><li>
 	<li class="active"><a href="#">Booth</a><li>
-	<li><a href="{% url 'exhibitor_participants' pk=object.pk %}">Participants</a><li>
+	<li><a href="{% url 'project_update_talk' pk=object.pk %}">Talk</a><li>
+	<li><a href="{% url 'project_update_workshop' pk=object.pk %}">Workshop</a><li>
+	<li><a href="{% url 'project_participants' pk=object.pk %}">Participants</a><li>
 </ul>
 
 <div class="tab-content tab-bordered">

@@ -1,12 +1,12 @@
 <div class="page-header">
-	<h2>Exhibitor <small>{{object.projectName}}</small></h2>
+	<h2>Project <small>{{object.projectName}}</small></h2>
 </div>
 {% if object.accepted %}
 	<div class="alert alert-success">
-		Your project was accepted as exhibitor.
+		Your project was accepted.
 	</div>
 {% elif object.createDate > reg_deadline_booth %}
 	<div class="alert alert-danger">
-		Your project was registered on the {{object.createDate|date:"d.m.Y"}}. This was after the registration deadline ({{reg_deadline_booth|date:"d.m.Y"}}). Please note that we may not be able to accept you as exhibitor this year.
+		Your project was registered on the {{object.createDate|date:"d.m.Y"}}. This was after the registration deadline ({{reg_deadline_booth|date:"d.m.Y"}}). Please note that we may not be able to accept your project this year.
 	</div>
 {% endif %}

@@ -75,3 +75,31 @@ class ProjectBoothForm(forms.ModelForm):
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))
+
+class ProjectTalkForm(forms.ModelForm):
+	class Meta:
+		model = Project
+		fields = ("talkComment")
+
+	def __init__(self, *args, **kwargs):
+		super(ProjectTalkForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
+			Field("talkComment"),
+#			FormActions(Submit("Save", "Save changes"))
+		)
+		self.helper.add_input(Submit("Save","Save changes"))
+
+class ProjectWorkshopForm(forms.ModelForm):
+	class Meta:
+		model = Project
+		fields = ("workshopComment")
+
+	def __init__(self, *args, **kwargs):
+		super(ProjectWorkshopForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
+			Field("workshopComment"),
+#			FormActions(Submit("Save", "Save changes"))
+		)
+		self.helper.add_input(Submit("Save","Save changes"))

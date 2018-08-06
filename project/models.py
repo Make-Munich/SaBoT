@@ -61,6 +61,10 @@ class Project(models.Model):
         boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
+        talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+
+        workshopComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+
 	participants = models.ManyToManyField(User,blank=True,editable=False,related_name="projectparticipation", through="ProjectParticipants")
 	accepted = models.BooleanField(default=False, editable=False)
 

@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.views.generic import TemplateView, RedirectView
 
 from devroom.models import Devroom, DevroomParticipants
-from exhibitor.models import Exhibitor, ExhibitorParticipants
+from project.models import Project, ProjectParticipants
 from sabot.multiYear import getActiveYear
 from sponsor.models import Sponsoring
 
@@ -17,7 +17,7 @@ class OverviewView(TemplateView):
 			year=getActiveYear(self.request),
 		)
 		context["user_sponsoring_member"] = Sponsoring.objects.filter(participants=self.request.user,year=getActiveYear(self.request))
-		context["user_exhibitors"] = Exhibitor.objects.filter(year=getActiveYear(self.request)).filter(Q(owner=self.request.user) | Q(participants=self.request.user)).distinct()
+		context["user_projects"] = Project.objects.filter(year=getActiveYear(self.request)).filter(Q(owner=self.request.user) | Q(participants=self.request.user)).distinct()
 		context["user_devrooms"] = Devroom.objects.filter(year=getActiveYear(self.request)).filter(Q(owner=self.request.user) | Q(participants=self.request.user)).distinct()
 
 		return context

@@ -33,7 +33,7 @@ urlpatterns = [
 	url(r'^sponsordjangotemplates/', include('sponsor.urls_sponsordjangotemplates')),
 	url(r'^sponsormails/', include('sponsor.urls_sponsormails')),
 	url(r'^sponsormailattachments/', include('sponsor.urls_sponsormailattachments')),
-	url(r'^exhibitors/', include('exhibitor.urls')),
+	url(r'^projects/', include('project.urls')),
 	url(r'^devrooms/', include('devroom.urls')),
 	#url(r'^ticket/', include('ticket.urls')),
 	url(r'^documenttemplate/', include('invoice.urls_documenttemplate')),

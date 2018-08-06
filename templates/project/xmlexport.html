@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<exhibitors xmlns="{{INSTALL_MAIN_URL}}/exhibitors">
+<projects xmlns="{{INSTALL_MAIN_URL}}/projects">
 	{% for project in object_list %}
-		<exhibitor>
+		<project>
 			<name>{{project.projectName}}</name>
 			<creationDate>{{project.createDate|date:"U"}}</creationDate>
 			<lastModified>{{project.modifyDate|date:"U"}}</lastModified>
@@ -26,8 +26,14 @@
                 <area>{{project.boothArea}}</area>
 				<comment>{{project.boothComment}}</comment>
 			</booth>
+			<talk>
+				<comment>{{project.talkComment}}</comment>
+			</talk>
+			<workshop>
+					<comment>{{project.workshopComment}}</comment>
+			</workshop>
 			<participants>
-				{% for membership in project.exhibitorparticipants_set.all %}
+				{% for membership in project.projectparticipants_set.all %}
 					<person>
 						<firstname>{{membership.user.first_name}}</firstname>
 						<lastname>{{membership.user.last_name}}</lastname>
@@ -36,6 +42,6 @@
 					</person>
 				{% endfor %}
 			</participants>
-		</exhibitor>
+		</project>
 	{% endfor %}
-</exhibitors>
+</projects>
