@@ -10,16 +10,16 @@
 		Welcome to the {{CONFERENCE_NAME}} registration interface for projects on the conference!
 	</p>
 	<p class="lead">
-		You can use this portal to register
+		You can use this portal to
 		<ul class="lead">
-			<li>for a project at the conference and add your booth, talk or workshop.</li>
-			<li>for a developer room at the conference. You can use this room for any purpose that helps your project(s). This includes developer meetings as well as presentations for the guests of {{CONFERENCE_NAME}}.</li>
+			<li>add your booth at the conference.</li>
+			<li>add a talk.</li>
+			<li>add a workshop.</li>
 		</ul>
 	</p>
 	<div style="text-align: center; margin-top: 50px">
 		<h2>What do you want to do?</h2>
 		<a href="{% url 'project_new' %}" class="btn btn-lg btn-primary">Register a project</a>
-		<a href="{% url 'devroom_new' %}" class="btn btn-lg btn-primary" style="margin-left: 50px">Register a developer room</a>
 	</div>
 {% else %}
 	<p class="lead">Hi {{user.first_name}} {{user.last_name}}, <small>(<a href="{% url 'auth_user_profile' %}">not correct?</a>)</small></p>
@@ -49,7 +49,7 @@
 	{% endif %}
 
 	{% if user_projects %}
-	<p class="lead">You are involved in the following projects that registered for a booth:</p>
+	<p class="lead">You are involved in the following projects:</p>
 	<ul class="lead">
 		{% for project in user_projects %}
 			<li><a href="{% url 'project_update_general' pk=project.id %}">{{project.projectName}}</a></li>
@@ -58,7 +58,7 @@
 	{% endif %}
 
 	{% if user_devrooms %}
-	<p class="lead">You are involved in the following projects that registered for a developer room:</p>
+	<p class="lead">You are involved in the following projects:</p>
 	<ul class="lead">
 		{% for project in user_devrooms %}
 			<li><a href="{% url 'devroom_update_general' pk=project.id %}">{{project.projectName}}</a></li>
@@ -67,8 +67,7 @@
 	{% endif %}
 	<div style="text-align: center; margin-top: 50px">
 		<h2>Register more projects</h2>
-		<a href="{% url 'project_new' %}" class="btn btn-lg btn-primary">Register a booth</a>
-		<a href="{% url 'devroom_new' %}" class="btn btn-lg btn-primary" style="margin-left: 50px">Register a developer room</a>
+		<a href="{% url 'project_new' %}" class="btn btn-lg btn-primary">Register another project</a>
 	</div>
 {% endif %}
 {% endblock %}

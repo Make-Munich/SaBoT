@@ -8,6 +8,7 @@
 <ul class="nav nav-tabs nav-tabs-bordered">
 	<li><a href="{% url 'project_update_general' pk=object.pk %}">General</a><li>
 	<li><a href="{% url 'project_update_texts' pk=object.pk %}">Description texts</a><li>
+	<li><a href="{% url 'project_update_booth' pk=object.pk %}">Booth</a><li>
 	<li class="active"><a href="#">Talk</a><li>
 	<li><a href="{% url 'project_update_workshop' pk=object.pk %}">Workshop</a><li>
 	<li><a href="{% url 'project_participants' pk=object.pk %}">Participants</a><li>
