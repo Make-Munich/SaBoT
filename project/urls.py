@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q, Sum
 
-from project.forms import ProjectGeneralForm, ProjectDescriptionForm, ProjectBoothForm
+from project.forms import ProjectGeneralForm, ProjectDescriptionForm, ProjectBoothForm, ProjectTalkForm, ProjectWorkshopForm
 from project.models import Project, ProjectParticipants
 from sabot.decorators import user_is_staff
 from sabot.multiYear import YSListView, YSXMLListView, YSOwnerSettingCreateView, getActiveYear
