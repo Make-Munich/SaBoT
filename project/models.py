@@ -10,6 +10,40 @@ PREFERENCES = (
         (0, "No preference"),
 )
 
+AREAS = (
+        (1, "3D Printing"),
+        (2, "Arduino"),
+        (3, "Art"),
+        (4, "Biohacking"),
+        (5, "Bionics"),
+        (6, "Crafts"),
+        (7, "Design"),
+        (8, "Digital Fabrication"),
+        (9, "Education"),
+        (10, "Electronics"),
+        (11, "Fashion"),
+        (12, "Food & Agriculture"),
+        (13, "Garden"),
+        (14, "Healthcare"),
+        (15, "Home Automation"),
+        (16, "Interaction"),
+        (17, "Internet of Things"),
+        (18, "Model Making"),
+        (19, "New Materials"),
+        (20, "Raspberry Pi"),
+        (21, "Robot & Drones"),
+        (22, "Science"),
+        (23, "Social design"),
+        (24, "Sustainability"),
+        (25, "Startup / Small Business"),
+        (26, "Tiny Houses"),
+        (27, "Transportation"),
+        (28, "Wearables"),
+        (29, "Wellness"),
+        (30, "Young Makers"),
+        (31, "Other"),
+)
+
 class Project(models.Model):
 	owner = models.ForeignKey(User,editable=False,related_name="projects")
 	createDate = models.DateField(auto_now_add=True,editable=False)
@@ -25,6 +59,7 @@ class Project(models.Model):
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
+        boothArea = models.CharField(choices=AREAS, max_lenght=24)
 
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
