@@ -51,19 +51,20 @@ class Project(models.Model):
 	logo = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Project logo"))
 	homepage = models.URLField(blank=True, verbose_name=_("Project homepage url"))
 
-	descriptionDE = models.TextField(blank=True, verbose_name=_("Description text of your project (German)"))
-	descriptionEN = models.TextField(blank=True, verbose_name=_("Description text of your project (English)"))
+	descriptionDE = models.TextField(blank=False, verbose_name=_("Description text of your project (German)"))
+	descriptionEN = models.TextField(blank=False, verbose_name=_("Description text of your project (English)"))
 
 	boothPreferedLocation = models.PositiveIntegerField(choices=PREFERENCES, verbose_name=_("Do you have a preferred location for your booth?"), default=0)
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
-        boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
-        boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
-        boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+    boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
+    #boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
+    boothArea = MultipleChoiceField(choices=AREAS, verbose_name=_("Which area is your booth in?"))
+    boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
-        talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+    talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
-        workshopComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
+    workshopComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
 	participants = models.ManyToManyField(User,blank=True,editable=False,related_name="projectparticipation", through="ProjectParticipants")
 	accepted = models.BooleanField(default=False, editable=False)
