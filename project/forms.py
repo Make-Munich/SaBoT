@@ -4,6 +4,40 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Div, HTML
 from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab
 
+AREAS = (
+        (1, "3D Printing"),
+        (2, "Arduino"),
+        (3, "Art"),
+        (4, "Biohacking"),
+        (5, "Bionics"),
+        (6, "Crafts"),
+        (7, "Design"),
+        (8, "Digital Fabrication"),
+        (9, "Education"),
+        (10, "Electronics"),
+        (11, "Fashion"),
+        (12, "Food & Agriculture"),
+        (13, "Garden"),
+        (14, "Healthcare"),
+        (15, "Home Automation"),
+        (16, "Interaction"),
+        (17, "Internet of Things"),
+        (18, "Model Making"),
+        (19, "New Materials"),
+        (20, "Raspberry Pi"),
+        (21, "Robot & Drones"),
+        (22, "Science"),
+        (23, "Social design"),
+        (24, "Sustainability"),
+        (25, "Startup / Small Business"),
+        (26, "Tiny Houses"),
+        (27, "Transportation"),
+        (28, "Wearables"),
+        (29, "Wellness"),
+        (30, "Young Makers"),
+        (31, "Other"),
+)
+
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
 		model = Project
@@ -60,18 +94,17 @@ class ProjectDescriptionForm(forms.ModelForm):
 class ProjectBoothForm(forms.ModelForm):
 	class Meta:
 		model = Project
-		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothPower", "boothArea", "boothComment")
+		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothPower", "boothComment")
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectBoothForm, self).__init__(*args, **kwargs)
-		boothAreaMulti = forms.MultipleChoiceField(choices=boothArea,)
+		boothArea = forms.MultipleChoiceField(choices=AREAS,label="What area is your booth in?")
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
 			Field("boothPreferedLocation"),
 			Field("boothNumTables"),
 			Field("boothNumChairs"),
             Field("boothPower"),
-            #Field("boothArea"),
 			'boothArea',
 			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
