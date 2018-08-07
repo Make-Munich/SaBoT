@@ -94,7 +94,7 @@ class ProjectDescriptionForm(forms.ModelForm):
 class ProjectBoothForm(forms.ModelForm):
 	class Meta:
 		model = Project
-		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothPower", "boothComment")
+		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothPower", "boothArea", "boothComment")
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectBoothForm, self).__init__(*args, **kwargs)
