@@ -61,7 +61,7 @@ class Project(models.Model):
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
         #boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
         #boothArea = forms.MultipleChoiceField(choices=AREAS)
-        boothArea = models.CharField(choices=AREAS, verbose_name=_("Which area is your booth in?"))
+        boothArea = models.CharField(choices=AREAS, max_length=31, verbose_name=_("Which area is your booth in?"))
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
         talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
