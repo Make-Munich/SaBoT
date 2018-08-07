@@ -64,13 +64,15 @@ class ProjectBoothForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectBoothForm, self).__init__(*args, **kwargs)
+		boothAreaMulti = forms.MultipleChoiceField(choices=boothArea,)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
 			Field("boothPreferedLocation"),
 			Field("boothNumTables"),
 			Field("boothNumChairs"),
             Field("boothPower"),
-            Field("boothArea"),
+            #Field("boothArea"),
+			'boothArea',
 			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
 		)
