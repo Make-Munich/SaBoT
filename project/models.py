@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from multiselectfield import MultiSelectField
@@ -59,7 +60,7 @@ class Project(models.Model):
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
         #boothArea = MultiSelectField(choices=AREAS, max_length=3, max_choices=3, verbose_name=_("Which area is your booth in?"))
-        boothArea = MultipleChoiceField(choices=AREAS, verbose_name=_("Which area is your booth in?"))
+        boothArea = forms.MultipleChoiceField(choices=AREAS, verbose_name=_("Which area is your booth in?"))
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
         talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
