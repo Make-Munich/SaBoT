@@ -1,8 +1,8 @@
 from django import forms
 from models import Project
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit, Div, HTML, PrependedText
-from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab
+from crispy_forms.layout import Layout, Field, Submit, Div, HTML
+from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText
 
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
