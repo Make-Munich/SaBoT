@@ -70,7 +70,8 @@ class ProjectBoothForm(forms.ModelForm):
 			Field("boothNumTables"),
 			Field("boothNumChairs"),
             Field("boothPower"),
-			Field("boothArea"),
+			#Field("boothArea"),
+			PrependedText("boothArea", ''),
 			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
 		)
