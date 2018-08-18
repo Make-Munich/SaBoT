@@ -40,6 +40,7 @@ urlpatterns = [
 	url(r'^invoice/', include('invoice.urls_invoice')),
 	url(r'^saml2/', include('djangosaml2.urls')),
 	url(r'^saml2test/', djangosaml2_views.echo_attributes, name='echo_attributes'),
+	url(r"^logged_out$", TemplateView.as_view(template_name="registration/logout.html")),
 ]
 
 if settings.LOCAL:
