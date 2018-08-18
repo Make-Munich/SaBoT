@@ -1,7 +1,7 @@
 from django import forms
 from models import Project
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Submit, Div, HTML
+from crispy_forms.layout import Layout, Field, Submit, Div, HTML, ButtonHolder
 from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
 
 class ProjectGeneralForm(forms.ModelForm):
@@ -85,7 +85,9 @@ class ProjectTalkForm(forms.ModelForm):
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
-			HTML("<a class='btn btn-primary' href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a></br></br>"),
+			ButtonHolder(
+				HTML("<a class='btn btn-primary' href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a>"),
+			),
 			Field("talkComment"),
 #			FormActions(Submit("Save", "Save changes"))
 		)
@@ -100,7 +102,9 @@ class ProjectWorkshopForm(forms.ModelForm):
 		super(ProjectWorkshopForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
-			HTML("<a class='btn btn-primary'href='https://pretalx.mm.derchris.eu/mm19w/me/submissions'>View or add submissions</a></br></br>"),
+			ButtonHolder(
+				HTML("<a class='btn btn-primary'href='https://pretalx.mm.derchris.eu/mm19w/me/submissions'>View or add submissions</a>"),
+			),
 			Field("workshopComment"),
 #			FormActions(Submit("Save", "Save changes"))
 		)
