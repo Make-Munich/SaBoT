@@ -44,6 +44,13 @@ AREAS = (
         (31, "Other"),
 )
 
+class boothCoices(models.Model):
+    text = models.CharField(choices=AREAS, max_length=24)
+    active = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.text
+
 class Project(models.Model):
 	owner = models.ForeignKey(User,editable=False,related_name="projects")
 	createDate = models.DateField(auto_now_add=True,editable=False)
@@ -61,7 +68,7 @@ class Project(models.Model):
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
         #boothArea = models.CharField(choices=AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
         #boothArea = models.ManyToManyField(AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
-        boothArea = models.ManyToManyField(AREAS)
+        boothArea = models.ManyToManyField(boothCoices)
 
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
