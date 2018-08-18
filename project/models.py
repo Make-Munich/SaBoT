@@ -66,9 +66,9 @@ class Project(models.Model):
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
-        #boothArea = models.CharField(choices=AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
+        boothArea = models.CharField(choices=AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
         #boothArea = models.ManyToManyField(AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
-        boothArea = models.ManyToManyField(boothCoices)
+        #boothArea = models.ManyToManyField(boothCoices)
 
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 

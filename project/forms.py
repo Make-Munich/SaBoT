@@ -2,7 +2,7 @@ from django import forms
 from models import Project
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Div, HTML
-from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText
+from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
 
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
@@ -71,7 +71,7 @@ class ProjectBoothForm(forms.ModelForm):
 			Field("boothNumChairs"),
             Field("boothPower"),
 			#Field("boothArea"),
-			PrependedText("boothArea", ''),
+			InlineCheckboxes("boothArea"),
 			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
 		)
