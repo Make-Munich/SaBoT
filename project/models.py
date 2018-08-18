@@ -5,44 +5,45 @@ from django.utils.translation import ugettext_lazy as _
 from multiselectfield import MultiSelectField
 
 PREFERENCES = (
-        (1, "Main Floor"),
-        (2, "Stage"),
-        (0, "No preference"),
+        (1, _("Main Floor")),
+        (2, _("Stage")),
+        (0, _("No preference")),
 )
 
 AREAS = (
-        (1, "3D Printing"),
-        (2, "Arduino"),
-        (3, "Art"),
-        (4, "Biohacking"),
-        (5, "Bionics"),
-        (6, "Crafts"),
-        (7, "Design"),
-        (8, "Digital Fabrication"),
-        (9, "Education"),
-        (10, "Electronics"),
-        (11, "Fashion"),
-        (12, "Food & Agriculture"),
-        (13, "Garden"),
-        (14, "Healthcare"),
-        (15, "Home Automation"),
-        (16, "Interaction"),
-        (17, "Internet of Things"),
-        (18, "Model Making"),
-        (19, "New Materials"),
-        (20, "Raspberry Pi"),
-        (21, "Robot & Drones"),
-        (22, "Science"),
-        (23, "Social design"),
-        (24, "Sustainability"),
-        (25, "Startup / Small Business"),
-        (26, "Tiny Houses"),
-        (27, "Transportation"),
-        (28, "Wearables"),
-        (29, "Wellness"),
-        (30, "Young Makers"),
-        (31, "Other"),
+        (1, _("3D Printing")),
+        (2, _("Arduino")),
+        (3, _("Art")),
+        (4, _("Biohacking")),
+        (5, _("Bionics")),
+        (6, _("Crafts")),
+        (7, _("Design")),
+        (8, _("Digital Fabrication")),
+        (9, _("Education")),
+        (10, _("Electronics")),
+        (11, _("Fashion")),
+        (12, _("Food & Agriculture")),
+        (13, _("Garden")),
+        (14, _("Healthcare")),
+        (15, _("Home Automation")),
+        (16, _("Interaction")),
+        (17, _("Internet of Things")),
+        (18, _("Model Making")),
+        (19, _("New Materials")),
+        (20, _("Raspberry Pi")),
+        (21, _("Robot & Drones")),
+        (22, _("Science")),
+        (23, _("Social design")),
+        (24, _("Sustainability")),
+        (25, _("Startup / Small Business")),
+        (26, _("Tiny Houses")),
+        (27, _("Transportation")),
+        (28, _("Wearables")),
+        (29, _("Wellness")),
+        (30, _("Young Makers")),
+        (31, _("Other")),
 )
+
 
 class Project(models.Model):
 	owner = models.ForeignKey(User,editable=False,related_name="projects")
@@ -59,8 +60,7 @@ class Project(models.Model):
 	boothNumTables = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many tables do you need (roughly 1.20m x 0.80m)?"))
 	boothNumChairs = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("How many chairs do you need?"))
         boothPower = models.PositiveIntegerField(blank=True,null=True, verbose_name=_("Do you need power? (How many kwH)"))
-        boothArea = models.CharField(choices=AREAS, max_length=24, verbose_name=_("Which area is your booth in?"))
-
+        boothArea = MultiSelectField(choices=AREAS, max_choices=31, verbose_name=_("Which area is your booth in?"))
         boothComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
 
         talkComment = models.TextField(blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth:"))
