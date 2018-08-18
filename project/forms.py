@@ -85,6 +85,7 @@ class ProjectTalkForm(forms.ModelForm):
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
+			HTML("<a href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a></br>),
 			Field("talkComment"),
 #			FormActions(Submit("Save", "Save changes"))
 		)
@@ -99,6 +100,7 @@ class ProjectWorkshopForm(forms.ModelForm):
 		super(ProjectWorkshopForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
+			HTML("<a href='https://pretalx.mm.derchris.eu/mm19w/me/submissions'>View or add submissions</a></br>),
 			Field("workshopComment"),
 #			FormActions(Submit("Save", "Save changes"))
 		)
