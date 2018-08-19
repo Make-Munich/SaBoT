@@ -3,6 +3,7 @@ from models import Project
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Div, HTML, ButtonHolder
 from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
+import requests
 
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
@@ -82,6 +83,12 @@ class ProjectTalkForm(forms.ModelForm):
 		fields = ("talkComment",)
 
 	def __init__(self, *args, **kwargs):
+	
+		response = requests.get('http://freegeoip.net/json/')
+    	geodata = response.json()
+    	ip = geodata['ip']
+        country = geodata['country_name']
+    
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
@@ -89,6 +96,7 @@ class ProjectTalkForm(forms.ModelForm):
 				HTML("<a class='btn btn-primary' href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a>"),
 			),
 			Field("talkComment"),
+			HTML("IP: {{ ip }}, Country: {{ country }}")
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))
