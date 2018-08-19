@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Div, HTML, ButtonHolder
 from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
 import requests
+from django.contrib.auth.models import User
 
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
@@ -82,11 +83,17 @@ class ProjectTalkForm(forms.ModelForm):
 		model = Project
 		fields = ("talkComment",)
 
-	response = requests.get('http://freegeoip.net/json/')
-	geodata = response.json()
-	print geodata
-	print('ip: %s' % geodata['ip'])
-	print('country: %s' % geodata['country_name'])
+	#print('ip: %s' % geodata['ip'])
+	#print('country: %s' % geodata['country_name'])
+
+	endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
+	talk_user = User.objects.get(email=username)
+    url = endpoint.format(user_email=talk_user)
+    headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:  # SUCCESS
+		talksdata = response.json()
+		print talksdata
 
 	def __init__(self, *args, **kwargs):
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
