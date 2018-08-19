@@ -91,6 +91,7 @@ class ProjectTalkForm(forms.ModelForm):
 	def __init__(self, user, *args, **kwargs):
 		self.user = user
 		kwargs['instance'] = user
+		print('user: %s' % self.user)
 		#super().__init__(*args, **kwargs)
 		#self.talk_user = User.get_username()
 		#self.user = kwargs.pop('user')
