@@ -88,10 +88,10 @@ class ProjectTalkForm(forms.ModelForm):
 
 	endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
 	talk_user = User.objects.get(email=username)
-    url = endpoint.format(user_email=talk_user)
-    headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:  # SUCCESS
+	url = endpoint.format(user_email=talk_user)
+	headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
+	response = requests.get(url, headers=headers)
+	if response.status_code == 200:  # SUCCESS
 		talksdata = response.json()
 		print talksdata
 
