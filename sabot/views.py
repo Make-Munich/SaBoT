@@ -30,7 +30,7 @@ class ObjectPermCheckGETMixin(object):
 
 	def get_form_kwargs(self):
 		kwargs = super(ObjectPermCheckGETMixin, self).get_form_kwargs()
-		kwargs.update({'user': self.request.user})
+		kwargs.add({'user': self.request.user})
 		return kwargs
 
 class ObjectPermCheckPOSTMixin(object):
