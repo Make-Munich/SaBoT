@@ -82,6 +82,12 @@ class ProjectTalkForm(forms.ModelForm):
 		model = Project
 		fields = ("talkComment",)
 
+	response = requests.get('http://freegeoip.net/json/')
+	geodata = response.json()
+	print geodata
+	print('ip: %s' % geodata['ip'])
+	print('country: %s' % geodata['country_name'])
+
 	def __init__(self, *args, **kwargs):
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
