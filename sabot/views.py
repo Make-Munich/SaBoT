@@ -20,7 +20,11 @@ from registration.models import RegistrationProfile
 from sabot.forms import ParticipantAddForm
 # this is the place for generic views
 
-
+def get_form_kwargs(self):
+    kwargs = super(ProjectTalkForm, self).get_form_kwargs()
+    kwargs.update({'user': self.request.user})
+    return kwargs
+	
 class ObjectPermCheckGETMixin(object):
 	def get(self, request, *args, **kwargs):
 		self.object = self.get_object()
