@@ -86,18 +86,18 @@ class ProjectTalkForm(forms.ModelForm):
 	#print('ip: %s' % geodata['ip'])
 	#print('country: %s' % geodata['country_name'])
 
-	endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
 	#talk_user = User.objects.get(email=username)
-	talk_user = self.user
-	url = endpoint.format(user_email=talk_user)
-	headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
-	response = requests.get(url, headers=headers)
-	if response.status_code == 200:  # SUCCESS
-		talksdata = response.json()
-		print talksdata
 
 	def __init__(self, *args, **kwargs):
 		self.user = kwargs.pop('user')
+		self.endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
+		self.talk_user = self.user
+		self.url = self.endpoint.format(user_email=self.talk_user)
+		self.headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
+		self.response = requests.get(self.url, headers=self.headers)
+		if self.response.status_code == 200:  # SUCCESS
+			self.talksdata = self.response.json()
+			print self.talksdata
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
