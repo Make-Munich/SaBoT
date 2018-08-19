@@ -26,7 +26,7 @@ class ObjectPermCheckGETMixin(object):
 		if not self.object.has_read_permission(self.request.user) and not request.user.is_staff:
 			raise PermissionDenied
 		#kwargs.update({'user': self.request.user})
-		print kwargs
+		#print kwargs
 		kwargs['user'] = request.user
 		return super(ObjectPermCheckGETMixin, self).get(request, *args, **kwargs)
 
