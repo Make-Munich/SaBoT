@@ -89,7 +89,7 @@ class ProjectTalkForm(forms.ModelForm):
 	#talk_user = User.objects.get(email=username)
 
 	def __init__(self, *args, **kwargs):
-		self.request = kwargs.pop('user', None)
+		self.user = kwargs.pop('user', None)
 		#kwargs['instance'] = user
 		print('user: %s' % self.user)
 		#super().__init__(*args, **kwargs)
