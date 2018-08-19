@@ -89,16 +89,16 @@ class ProjectTalkForm(forms.ModelForm):
 	#talk_user = User.objects.get(email=username)
 
 	def __init__(self, *args, **kwargs):
-		self.talk_user = User.get_username()
-		self.user = kwargs.pop('user')
-		self.endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
-		self.talk_user = self.user
-		self.url = self.endpoint.format(user_email=self.talk_user)
-		self.headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
-		self.response = requests.get(self.url, headers=self.headers)
-		if self.response.status_code == 200:  # SUCCESS
-			self.talksdata = self.response.json()
-			print self.talksdata
+		#self.talk_user = User.get_username()
+		#self.user = kwargs.pop('user')
+		#self.endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
+		#self.talk_user = self.user
+		#self.url = self.endpoint.format(user_email=self.talk_user)
+		#self.headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
+		#self.response = requests.get(self.url, headers=self.headers)
+		#if self.response.status_code == 200:  # SUCCESS
+		#	self.talksdata = self.response.json()
+		#	print self.talksdata
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
@@ -106,7 +106,6 @@ class ProjectTalkForm(forms.ModelForm):
 				HTML("<a class='btn btn-primary' href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a>"),
 			),
 			Field("talkComment"),
-			HTML("<p>Your ip address is <strong>{{ ip }}</strong>, and you are probably in <strong>{{ country }}</strong> right now.</p>")
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))
