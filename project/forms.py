@@ -88,7 +88,7 @@ class ProjectTalkForm(forms.ModelForm):
 
 	endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
 	#talk_user = User.objects.get(email=username)
-	talk_user = request.user
+	talk_user = self.user
 	url = endpoint.format(user_email=talk_user)
 	headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
 	response = requests.get(url, headers=headers)
@@ -97,6 +97,7 @@ class ProjectTalkForm(forms.ModelForm):
 		print talksdata
 
 	def __init__(self, *args, **kwargs):
+		self.user = kwargs.pop('user')
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
