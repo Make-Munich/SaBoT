@@ -83,12 +83,6 @@ class ProjectTalkForm(forms.ModelForm):
 		fields = ("talkComment",)
 
 	def __init__(self, *args, **kwargs):
-	
-		response = requests.get('http://freegeoip.net/json/')
-    	geodata = response.json()
-    	ip = geodata['ip']
-        country = geodata['country_name']
-    
 		super(ProjectTalkForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
@@ -96,7 +90,7 @@ class ProjectTalkForm(forms.ModelForm):
 				HTML("<a class='btn btn-primary' href='https://pretalx.mm.derchris.eu/mm2018/me/submissions'>View or add submissions</a>"),
 			),
 			Field("talkComment"),
-			HTML("IP: {{ ip }}, Country: {{ country }}")
+			HTML("<p>Your ip address is <strong>{{ ip }}</strong>, and you are probably in <strong>{{ country }}</strong> right now.</p>")
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))
