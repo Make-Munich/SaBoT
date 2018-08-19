@@ -87,7 +87,8 @@ class ProjectTalkForm(forms.ModelForm):
 	#print('country: %s' % geodata['country_name'])
 
 	endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
-	talk_user = User.objects.get(email=username)
+	#talk_user = User.objects.get(email=username)
+	talk_user = request.user
 	url = endpoint.format(user_email=talk_user)
 	headers = {'Authorization': 'Token b81068d5c94911ac8df1a0ff9d095decde1ced1a', 'Accept': 'application/json'}
 	response = requests.get(url, headers=headers)
