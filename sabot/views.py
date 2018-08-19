@@ -25,7 +25,7 @@ class ObjectPermCheckGETMixin(object):
 		self.object = self.get_object()
 		if not self.object.has_read_permission(self.request.user) and not request.user.is_staff:
 			raise PermissionDenied
-		#kwargs.update({'user': self.request.user})
+		kwargs.update({'user': self.request.user})
 		return super(ObjectPermCheckGETMixin, self).get(request, *args, **kwargs)
 
 class ObjectPermCheckPOSTMixin(object):
