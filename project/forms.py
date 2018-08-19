@@ -89,10 +89,7 @@ class ProjectTalkForm(forms.ModelForm):
 	#talk_user = User.objects.get(email=username)
 
 	def __init__(self, *args, **kwargs):
-		for attr in dir(args):
-			print("obj.%s = %r" % (attr, getattr(args, attr)))
-		for attr in dir(kwargs):
-			print("obj.%s = %r" % (attr, getattr(kwargs, attr)))
+		print User.username
 		self.user = kwargs.pop('user')
 		self.endpoint = 'https://pretalx.mm.derchris.eu/api/events/mm2018/speakers/?q={user_email}'
 		self.talk_user = self.user
