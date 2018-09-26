@@ -146,9 +146,12 @@ class ProjectBoothForm(forms.ModelForm):
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
 			Field("boothDescription"),
-			Field("boothTables"),
-			Field("boothChairs"),
-            Field("boothBenches"),
+			Div(
+        		Div('boothTables', css_class='col-md-4',),
+        		Div('boothChairs', css_class='col-md-4',),
+				Div('boothBenches', css_class='col-md-4',),
+        		css_class='row',
+    		),
 			Field("boothPower"),
 			Field("boothExtras"),
 			Field("boothExtrasComment"),
