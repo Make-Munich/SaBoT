@@ -138,6 +138,25 @@ class ProjectBoothForm(forms.ModelForm):
 		)
 		self.helper.add_input(Submit("Save","Save changes"))
 
+
+class ProjectServiceForm(forms.ModelForm):
+	class Meta:
+		model = Project
+		fields = (
+			"serviceTickets", 
+			"serviceParking",
+			)
+
+	def __init__(self, *args, **kwargs):
+		super(ProjectServiceForm, self).__init__(*args, **kwargs)
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
+			Field("serviceTickets"),
+			Field("serviceParking"),
+#			FormActions(Submit("Save", "Save changes"))
+		)
+		self.helper.add_input(Submit("Save","Save changes"))
+
 class ProjectTalkForm(forms.ModelForm):
 	class Meta:
 		model = Project

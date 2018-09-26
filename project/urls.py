@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Q, Sum
 
-from project.forms import ProjectGeneralForm, ProjectDescriptionForm, ProjectBoothForm, ProjectTalkForm, ProjectWorkshopForm
+from project.forms import ProjectGeneralForm, ProjectDescriptionForm, ProjectBoothForm, ProjectTalkForm, ProjectWorkshopForm, ProjectServiceForm
 from project.models import Project, ProjectParticipants
 from sabot.decorators import user_is_staff
 from sabot.multiYear import YSListView, YSXMLListView, YSOwnerSettingCreateView, getActiveYear
@@ -41,6 +41,13 @@ urlpatterns = [
 			template_name = "project/booth.html",
 			success_url = "/projects/{id}/booth")),
 		name = "project_update_booth"),
+	url(r'^(?P<pk>[0-9]+)/service$',
+		login_required(PermCheckUpdateView.as_view(
+			model = Project,
+			form_class = ProjectServiceForm,
+			template_name = "project/service.html",
+			success_url = "/projects/{id}/service")),
+		name = "project_update_service"),
 	url(r'^(?P<pk>[0-9]+)/talk$',
 		login_required(PermCheckUpdateView.as_view(
 			model = Project,

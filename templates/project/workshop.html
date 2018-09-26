@@ -8,6 +8,7 @@
 <ul class="nav nav-tabs nav-tabs-bordered">
 	<li><a href="{% url 'project_update_general' pk=object.pk %}">General</a><li>
 	<li><a href="{% url 'project_update_texts' pk=object.pk %}">Project</a><li>
+	<li><a href="{% url 'project_update_service' pk=object.pk %}">Service</a><li>
 	<li><a href="{% url 'project_update_booth' pk=object.pk %}">Booth</a><li>
 	<li><a href="{% url 'project_update_talk' pk=object.pk %}">Talk</a><li>
 	<li class="active"><a href="#">Workshop</a><li>
@@ -15,11 +16,12 @@
 </ul>
 
 <div class="tab-content tab-bordered">
-	<div class="tab-pane active" id="booth_info">
+	<div class="tab-pane active" id="workshop_info">
 		<div class="row">
 			<div class="col-md-8">
 				<p class="text-info">
-				Some info here</p>
+					Some info here
+				</p>
 			</div>
 		</div>
 		{% crispy form form.helper%}
