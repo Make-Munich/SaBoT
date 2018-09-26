@@ -69,50 +69,42 @@ class ProjectDescriptionForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(ProjectDescriptionForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
-		if self.instance and self.instance.logo and self.instance.logoOrg and self.instance.logoTeam:
-			self.helper.layout = Layout(
-				Field("descriptionDE"),
-				Field("descriptionEN"),
-				Field("projectArea"),
+		self.helper.layout = Layout(
+			Field("descriptionDE"),
+			Field("descriptionEN"),
+			Field("projectArea"),
+		)
+		if self.instance and self.instance.logoOrg:
+			self.helper.layout.extend([
 				Field("logoOrg"),
-					Div(
-						HTML("<p>Current logo:</p><img src=\"{{object.logoOrg.url}}\" style=\"max-height:200px\"/>"),
-						css_class = "control-group"),
-				Field("logo"),
-					Div(
-						HTML("<p>Current logo:</p><img src=\"{{object.logo.url}}\" style=\"max-height:200px\"/>"),
-						css_class = "control-group"),
-				Field("logoTeam"),
-					Div(
-						HTML("<p>Current logo:</p><img src=\"{{object.logoTeam.url}}\" style=\"max-height:200px\"/>"),
-						css_class = "control-group"),
-				Field("video"),
-#			FormActions(Submit("Save", "Save changes"))
-			)
+				Div(HTML("<p>Current logo:</p><img src=\"{{object.logoOrg.url}}\" style=\"max-height:200px\"/>"), css_class = "control-group"),	
+			])
 		else:
-			self.helper.layout = Layout(
-				Field("descriptionDE"),
-				Field("descriptionEN"),
-				Field("projectArea"),
-				Div(
-					Div(Field("logoOrg"),css_class = "col-md-2"),
-					css_class = "row"
-				),
-				Div(
-					Div(Field("logo"),css_class = "col-md-2"),
-					css_class = "row"
-				),
-				Div(
-					Div(Field("logoTeam"),css_class = "col-md-2"),
-					css_class = "row"
-				),
-				Field("video"),self.helper.add_input(Submit("Save","Save changes"))
-			)
-		if self.instance is not None and self.instance.id is not None:
-			self.helper.add_input(Submit("Save", "Save changes"))
-		else:
-			self.helper.add_input(Submit("Save", "Register"))
+			self.helper.layout.append(
+				Div(Div(Field("logoOrg"),css_class = "col-md-2"), css_class = "row"),
+			)	
 
+		if self.instance and self.instance.logo:
+			self.helper.layout.extend([
+				Field("logo"),
+				Div(HTML("<p>Current logo:</p><img src=\"{{object.logo.url}}\" style=\"max-height:200px\"/>"), css_class = "control-group"),	
+			])
+		else:
+			self.helper.layout.append(
+				Div(Div(Field("logo"),css_class = "col-md-2"), css_class = "row"),
+			)	
+
+		if self.instance and self.instance.logoTeam:
+			self.helper.layout.extend([
+				Field("logoTeam"),
+				Div(HTML("<p>Current logo:</p><img src=\"{{object.logoTeam.url}}\" style=\"max-height:200px\"/>"), css_class = "control-group"),	
+			])
+		else:
+			self.helper.layout.append(
+				Div(Div(Field("logoTeam"),css_class = "col-md-2"), css_class = "row"),
+			)	
+		self.helper.add_input(Submit("Save", "Save changes"))
+		
 
 class ProjectBoothForm(forms.ModelForm):
 	class Meta:
