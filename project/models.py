@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from multiselectfield import MultiSelectField
+from django_currentuser.db.models import CurrentUserField
 
 PSTATE = (
         (1, _("Submitted")),
@@ -244,7 +245,7 @@ class Project(models.Model):
         projectStatus = models.PositiveIntegerField(choices=PSTATE, verbose_name=_("Project status"), default=1)
         createDate = models.DateField(auto_now_add=True,editable=False)
         modifyDate = models.DateField(auto_now=True, editable=False)
-        modifyBy = models.TextField(blank=True, verbose_name=_("Modify by"))
+        modifyBy = CurrentUserField()
         firstname = models.CharField(max_length=30, blank=True, verbose_name=_("Firstname"))
         lastname = models.CharField(max_length=30, blank=True, verbose_name=_("Lastname"))
         email = models.EmailField(blank=True, verbose_name=_("Email"))
