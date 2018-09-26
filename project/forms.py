@@ -26,10 +26,14 @@ class ProjectGeneralForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(ProjectGeneralForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
+		#self.helper.form_class='form-horizontal'
 		self.helper.layout = Layout(
 			Field("projectName"),
-			Field("firstname"),
-			Field("lastname"),
+			Div(
+        		Div('firstname', css_class='col-md-6',),
+        		Div('lastname', css_class='col-md-6',),
+        		css_class='row',
+    		),
 			Field("email"),
 			Field("phone"),
 			Field("homepage"),
@@ -40,6 +44,11 @@ class ProjectGeneralForm(forms.ModelForm):
 			Field("generalComment"),
 #			FormActions(Submit("Save", "Save changes"))
 			)
+
+		#self.helper[1:3].wrap_together(Div, css_class="name-wrapper")
+		#self.helper['firstname'].wrap(Field, css_class="col-md-6", wrapper_class="firstname")
+		#self.helper['lastname'].wrap(Field, css_class="col-md-6", wrapper_class="lastname")
+
 		if self.instance is not None and self.instance.id is not None:
 			self.helper.add_input(Submit("Save", "Save changes"))
 		else:
