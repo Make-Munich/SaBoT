@@ -22,7 +22,7 @@
 		<a href="{% url 'project_new' %}" class="btn btn-lg btn-primary">Register a project</a>
 	</div>
 {% else %}
-	<p class="lead">Hi {{user.first_name}} {{user.last_name}}, <small>(<a href="{% url 'auth_user_profile' %}">not correct?</a>)</small></p>
+	<p class="lead">Hi {{user.first_name}} {{user.last_name}}, <small>(<a href="https://login.make-munich.de/module.php/selfregister/reviewUser.php">not correct?</a>)</small></p>
 
 	{% if user_sponsorings %}
 	<p class="lead">The following sponsorings are registered to be administrated with this account:</p>
