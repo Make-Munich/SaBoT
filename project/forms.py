@@ -5,6 +5,8 @@ from crispy_forms.layout import Layout, Field, Submit, Div, HTML, ButtonHolder
 from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
 import requests
 from django.contrib.auth.models import User
+from django_currentuser.middleware import (
+    get_current_user, get_current_authenticated_user)
 
 class ProjectGeneralForm(forms.ModelForm):
 	class Meta:
@@ -44,6 +46,15 @@ class ProjectGeneralForm(forms.ModelForm):
 			Field("generalComment"),
 #			FormActions(Submit("Save", "Save changes"))
 			)
+
+		#current_user = get_current_user()
+		#print "user: %s" % current_user
+
+		#print User.objects.all()
+		#user = User.objects.get(username=get_current_user())
+		#print user.is_staff
+		
+		
 
 		#self.helper[1:3].wrap_together(Div, css_class="name-wrapper")
 		#self.helper['firstname'].wrap(Field, css_class="col-md-6", wrapper_class="firstname")
