@@ -178,7 +178,7 @@ class ProjectServiceForm(forms.ModelForm):
 		super(ProjectServiceForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
-			Div(HTML("<p>Team members: Admission tickets for 2 makers are included with your booth. More tickets can be ordered</p><p>Exhibitor parking tickets: On-site parking at the venue is possible and there are 3-day parking permits available (valid from Friday to Sunday) for 10 € per vehicle.</p>")),
+			Div(HTML("<p>Team members: Admission tickets for 2 makers are included with your booth. More tickets can be ordered</p><p>Exhibitor parking tickets: On-site parking at the venue is possible and there are 3-day parking permits available (valid from Friday to Sunday) for 10 Euro per vehicle.</p>")),
 			Div(HTML("<p>Please select your total(!) team size</p>")),
 			Field("serviceTickets"),
 			Div(HTML("<p>Please select the number of desired 3-day parking tickets</p>")),
