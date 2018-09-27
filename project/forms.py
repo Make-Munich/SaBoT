@@ -2,7 +2,7 @@ from django import forms
 from models import Project
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Submit, Div, HTML, ButtonHolder
-from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes
+from crispy_forms.bootstrap import FormActions, StrictButton, TabHolder, Tab, PrependedText, InlineCheckboxes, InlineField
 import requests
 from django.contrib.auth.models import User
 from django_currentuser.middleware import (
@@ -90,9 +90,11 @@ class ProjectDescriptionForm(forms.ModelForm):
 		super(ProjectDescriptionForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
+			Div(HTML("<p>Think of it as a letter of introduction, your chance to grab a reader's interest. Tell them why they should care about your work. Preferably you keep it short (300 and 900 characters) You can change the text later.</p>")),
 			Field("descriptionDE"),
 			Field("descriptionEN"),
 			Field("projectArea"),
+			Div(HTML("<p>Please provide us a picture or logo of your project. We would like to promote your participation on our website.</p>"))
 		)
 		if self.instance and self.instance.logoOrg:
 			self.helper.layout.extend([
@@ -145,6 +147,8 @@ class ProjectBoothForm(forms.ModelForm):
 		super(ProjectBoothForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
+			Div(HTML("<p>Maker booths are the core of Make Munich. Now we need some information from you to get an idea in what you are planning.</p><p>Maker Booth: A standard booth consists of 2x2.2m of space, 1 table (0.5x2.2m), and 1 chair. Most stands will have fence back walls.</p>")),
+			Div(HTML("<p>Describe what you will bring to Make Munich. Do provide any hands-on activities at your booth? (Note: There is a special form for workshops)</p>")),
 			Field("boothDescription"),
 			Div(
         		Div('boothTables', css_class='col-md-4',),
@@ -174,7 +178,10 @@ class ProjectServiceForm(forms.ModelForm):
 		super(ProjectServiceForm, self).__init__(*args, **kwargs)
 		self.helper = FormHelper()
 		self.helper.layout = Layout(
+			Div(HTML("<p>Team members: Admission tickets for 2 makers are included with your booth. More tickets can be ordered</p><p>Exhibitor parking tickets: On-site parking at the venue is possible and there are 3-day parking permits available (valid from Friday to Sunday) for 10 € per vehicle.</p>")),
+			Div(HTML("<p>Please select your total(!) team size</p>")),
 			Field("serviceTickets"),
+			Div(HTML("<p>Please select the number of desired 3-day parking tickets</p>")),
 			Field("serviceParking"),
 #			FormActions(Submit("Save", "Save changes"))
 		)

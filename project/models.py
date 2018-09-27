@@ -94,7 +94,6 @@ BHSTATE = (
 )
 
 CHAIRS = (
-        (0, _("No chair")),
         (1, _("1")),
         (2, _("2")),
         (3, _("3")),
@@ -105,7 +104,6 @@ CHAIRS = (
 )
 
 TABLES = (
-        (0, _("No table")),
         (1, _("1")),
         (2, _("2")),
         (3, _("3")),
@@ -250,22 +248,22 @@ class Project(models.Model):
         lastname = models.CharField(max_length=30, blank=True, verbose_name=_("Lastname"))
         email = models.EmailField(blank=True, verbose_name=_("Email"))
         phone = models.CharField(max_length=20, blank=True, verbose_name=_("Phone"))
-        homepage = models.URLField(blank=True, verbose_name=_("Project homepage url"))
-        projecttype = models.PositiveIntegerField(choices=PTYPE, verbose_name=_("Project type"), default=1)
-        language = models.PositiveIntegerField(choices=CLANG, verbose_name=_("In which language do you want to communicate?"), default=1)
-        hear = models.CharField(max_length=20, blank=True, verbose_name=_("How did you hear from us?"))
-        recommendation = models.CharField(max_length=50, blank=True, verbose_name=_("Recommendation"))
-        generalComment = models.TextField(blank=True, verbose_name=_("Comment"))
+        homepage = models.URLField(blank=True, verbose_name=_("Homepage"))
+        projecttype = models.PositiveIntegerField(choices=PTYPE, verbose_name=_("Which participant type are you?"), default=1)
+        language = models.PositiveIntegerField(choices=CLANG, verbose_name=_("Language in which you would like to communicate with us"), default=1)
+        hear = models.CharField(max_length=20, blank=True, verbose_name=_("How did you hear about Make Munich?"))
+        recommendation = models.CharField(max_length=50, blank=True, verbose_name=_("Maker recommendations"))
+        generalComment = models.TextField(blank=True, verbose_name=_("Space for additional comments"))
         internalComment = models.TextField(blank=True, verbose_name=_("Internal comments"))
 
 
-        descriptionDE = models.TextField(max_length=900, blank=True, verbose_name=_("Description text of your project (German)"))
-	descriptionEN = models.TextField(max_length=900, blank=True, verbose_name=_("Description text of your project (English)"))
-        projectArea = MultiSelectField(blank=True, choices=AREAS, max_choices=7, verbose_name=_("Which area is your project in?"))
-        logoOrg = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Organisation logo"))
-        logo = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Project logo"))
-        logoTeam = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Team logo"))
-        video = models.URLField(blank=True, verbose_name=_("Project video url"))
+        descriptionDE = models.TextField(max_length=900, blank=True, verbose_name=_("Project description german"))
+	descriptionEN = models.TextField(max_length=900, blank=True, verbose_name=_("Project description english"))
+        projectArea = MultiSelectField(blank=True, choices=AREAS, max_choices=7, verbose_name=_("Categories, Select a maximum of 7"))
+        logoOrg = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Logo"))
+        logo = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Project picture"))
+        logoTeam = models.ImageField(blank=True,upload_to="projects/logos", verbose_name=_("Team picture"))
+        video = models.URLField(blank=True, verbose_name=_("Project video"))
 
 
         boothDescription = models.TextField(max_length=300, blank=True, verbose_name=_("Booth description"))		
@@ -273,8 +271,8 @@ class Project(models.Model):
         boothArea = models.PositiveIntegerField(choices=BAREA, verbose_name=_("Booth area"), default=0)
         boothStatus = models.PositiveIntegerField(choices=BSTATE, verbose_name=_("Booth status"), default=1)
         boothHallStatus = models.PositiveIntegerField(choices=BHSTATE, verbose_name=_("Hall state"), default=1)
-	boothTables = models.PositiveIntegerField(choices=TABLES, verbose_name=_("How many tables do you need?"), default=0)
-	boothChairs = models.PositiveIntegerField(choices=CHAIRS, verbose_name=_("How many chairs do you need?"), default=0)
+	boothTables = models.PositiveIntegerField(choices=TABLES, verbose_name=_("How many tables do you need?"), default=1)
+	boothChairs = models.PositiveIntegerField(choices=CHAIRS, verbose_name=_("How many chairs do you need?"), default=1)
         boothBenches = models.PositiveIntegerField(choices=BENCHES, verbose_name=_("How many benches do you need?"), default=0)
         boothTablesPlan = models.PositiveIntegerField(default=0, blank=True, verbose_name=_("Tables planned"))
         boothTablesRes = models.PositiveIntegerField(default=0, blank=True, verbose_name=_("Tables reserve"))
@@ -284,28 +282,28 @@ class Project(models.Model):
         boothBenchesRes = models.PositiveIntegerField(default=0, blank=True, verbose_name=_("Benches reserve"))
         boothSize = models.CharField(max_length=20, blank=True, verbose_name=_("Booth size"))
         boothSizePlan = models.CharField(max_length=20, blank=True, verbose_name=_("Booth size planned"))
-        boothPower = models.PositiveIntegerField(choices=POWER, verbose_name=_("Power"), default=1)
+        boothPower = models.PositiveIntegerField(choices=POWER, verbose_name=_("Power supply"), default=1)
         boothPowerPlan = models.PositiveIntegerField(choices=POWER, verbose_name=_("Power planned"), default=1)
-        boothExtras = MultiSelectField(blank=True, choices=EXTRAS, max_choices=9, verbose_name=_("Booth extras"))
-        boothExtrasComment = models.TextField(max_length=300, blank=True, verbose_name=_("Here you have the chance to leave us further comments regarding your booth"))
-        boothOwn = models.TextField(max_length=300, blank=True, verbose_name=_("Own equipment"))
+        boothExtras = MultiSelectField(blank=True, choices=EXTRAS, max_choices=9, verbose_name=_("Extra equipment"))
+        boothExtrasComment = models.TextField(max_length=300, blank=True, verbose_name=_("Comments on optional extras"))
+        boothOwn = models.TextField(max_length=300, blank=True, verbose_name=_("Equipment brought along"))
         boothSafety= models.TextField(max_length=300, blank=True, verbose_name=_("Safety precautions"))
         boothComment = models.TextField(blank=True, verbose_name=_("Internal comments"))
         boothLastMinute = models.TextField(blank=True, verbose_name=_("Last minute"))
 
 
-        serviceTickets = models.PositiveIntegerField(choices=TICKETS, verbose_name=_("How many tickets do you need?"), default=0)
-        serviceTicketsGiven = models.PositiveIntegerField(choices=TICKETS, verbose_name=_("How many tickets have been given"), default=0)
-        serviceParking = models.PositiveIntegerField(choices=PARKING, verbose_name=_("How many parking tickets do you need?"), default=0)
-        serviceParkingGiven = models.PositiveIntegerField(choices=PARKING, verbose_name=_("How many parking tickets have been given"), default=0)
+        serviceTickets = models.PositiveIntegerField(choices=TICKETS, verbose_name=_("Number of exhibitor tickets"), default=0)
+        serviceTicketsGiven = models.PositiveIntegerField(choices=TICKETS, verbose_name=_("Exhibitor tickets distributed"), default=0)
+        serviceParking = models.PositiveIntegerField(choices=PARKING, verbose_name=_("Number of parking tickets"), default=0)
+        serviceParkingGiven = models.PositiveIntegerField(choices=PARKING, verbose_name=_("Parking tickets distributed"), default=0)
         serviceStatus = models.PositiveIntegerField(choices=TSTATE, verbose_name=_("Ticket status"), default=0)
         serviceDistribution = models.PositiveIntegerField(choices=DISTRIBUTION, verbose_name=_("Distribution"), default=1)
-        serviceDistributed = models.CharField(max_length=30, blank=True, verbose_name=_("Distributed"))
+        serviceDistributed = models.CharField(max_length=30, blank=True, verbose_name=_("Distributed by"))
         serviceSponsorlevel = models.CharField(max_length=30, blank=True, verbose_name=_("Sponsorlevel"))
         serviceAreabranding = models.CharField(max_length=30, blank=True, verbose_name=_("Areabranding"))
         serviceWorkshop = models.PositiveIntegerField(choices=WORKSHOP, verbose_name=_("Workshop"), default=1)
         serviceTalk = models.PositiveIntegerField(choices=TALK, verbose_name=_("Talk"), default=1)
-        serviceComments = models.TextField(max_length=300, blank=True, verbose_name=_("Agreements"))
+        serviceComments = models.TextField(max_length=300, blank=True, verbose_name=_("Further agreements"))
         serviceInternalComments = models.TextField(max_length=300, blank=True, verbose_name=_("Internal comments"))
 
 
