@@ -12,11 +12,17 @@
 		<script src="{{STATIC_URL}}cfp.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}typeahead.bundle.js" type="text/javascript"></script>
 		<link href="{{STATIC_URL}}typeahead.css" rel="stylesheet">
+		<link href="{{STATIC_URL}}lang/bootstrap-select.min.css" rel="stylesheet">
+		<link href="{{STATIC_URL}}lang/flag-icon.min.css" rel="stylesheet">
+		<script src="{{STATIC_URL}}lang/bootstrap-select.min.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
 		<script src="{{STATIC_URL}}tablesorter/tablesorter.custom.js" type="text/javascript"></script>
 		<script>
 			$(document).ready(function () {
+				$(function(){
+    				$('.selectpicker').selectpicker();
+				});
 				$("[data-toggle=tooltip]").not("ul.nav a").not("label > span").tooltip();
 				$("ul.nav a[data-toggle=tooltip], span[data-toggle=tooltip]").tooltip({ container: "body" });
 				$(".multiYear-selector").click(function () {
@@ -35,7 +41,24 @@
 			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 				<div class="container">
 					<div class="navbar-header">
-					<ul class ="nav navbar-nav">
+					<ul class="nav navbar-nav">
+					<li>
+						{% load i18n %}
+						<form class="navbar-form navbar-left" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+							<input class="form-control" name="next" type="hidden" value="{{ redirect_to }}">
+							<select class="selectpicker form-control" data-width="fit" name="language" onchange='this.form.submit()'>
+								{% get_current_language as LANGUAGE_CODE %}
+								{% get_available_languages as LANGUAGES %}
+								{% get_language_info_list for LANGUAGES as languages %}
+								{% for language in languages %}
+									<option data-content='<span class="flag-icon flag-icon-{% if language.code == "en-gb"%}gb{% else %}{{ language.code }}{% endif %}"></span> {{ language.name }}' value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+											({{ language.code }})
+									</option>
+								{% endfor %}
+							</select>
+							<noscript><input type="submit" value="Go" class="btn btn-default"></noscript>
+						</form>
+					</li>
 					<li>
 						{% if user.is_staff %}
 						<a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="#">{{CONFERENCE_NAME}} {{active_year}} <b class="caret"></b></a>
