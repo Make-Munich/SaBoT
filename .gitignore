@@ -12,3 +12,4 @@ templates/sponsor/publicFaq.html
 media/*
 static/GitHub-Mark-32px.png
 d10env
+.vscode
