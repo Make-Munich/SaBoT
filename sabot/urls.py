@@ -41,6 +41,7 @@ urlpatterns = [
 	url(r'^saml2/', include('djangosaml2.urls')),
 	url(r'^saml2test/', djangosaml2_views.echo_attributes, name='echo_attributes'),
 	url(r"^logged_out$", TemplateView.as_view(template_name="registration/logout.html")),
+	url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.LOCAL:
