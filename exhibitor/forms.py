@@ -60,7 +60,7 @@ class ExhibitorDescriptionForm(forms.ModelForm):
 class ExhibitorBoothForm(forms.ModelForm):
 	class Meta:
 		model = Exhibitor
-		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothComment")
+		fields = ("boothPreferedLocation", "boothNumTables", "boothNumChairs", "boothPower", "boothArea", "boothComment")
 
 	def __init__(self, *args, **kwargs):
 		super(ExhibitorBoothForm, self).__init__(*args, **kwargs)
@@ -69,7 +69,9 @@ class ExhibitorBoothForm(forms.ModelForm):
 			Field("boothPreferedLocation"),
 			Field("boothNumTables"),
 			Field("boothNumChairs"),
-			Field("boothComment"),
+                        Field("boothPower"),
+                        Field("boothArea"),
+			Div("boothComment", HTML("{% if user.is_staff %} <p>Admin only</p> {% endif %}")),
 #			FormActions(Submit("Save", "Save changes"))
 		)
 		self.helper.add_input(Submit("Save","Save changes"))

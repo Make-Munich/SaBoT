@@ -1,7 +1,7 @@
 Hi {{user.first_name}} {{user.last_name}},
 
 
-You were registered with the {{conference_name}}-Projects interface as a participant of {{project.projectName}}.
+You were registered with the {{conference_name}} Projects interface as a participant of {{project.projectName}}.
 
 Your username is {{user.username}}.
 
@@ -16,4 +16,4 @@ Please use the following link to activate your account:
 
 Best Regards,
 
-Your {{conference_name}}-Team
+Your {{conference_name}} Team

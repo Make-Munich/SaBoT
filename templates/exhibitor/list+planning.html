@@ -21,6 +21,8 @@
 			<th>Location</th>
 			<th>Tables</th>
 			<th>Chairs</th>
+            <th>Power</th>
+            <th>Area</th>
 			<th>Provided information</th>
 			<th>Actions</th>
 		</tr>
@@ -41,9 +43,11 @@
 				</td>
 				<td>{{project.boothNumTables}}</td>
 				<td>{{project.boothNumChairs}}</td>
+                <td>{{project.boothPower}}</td>
+                <td>{{project.boothArea}}</td>
 				<td>
 					{% if project.descriptionDE != "" and project.descriptionEN != "" %}<a href="{% url 'exhibitor_update_texts' pk=project.pk %}" data-toggle="tooltip" title="Texts in DE and EN available"><span class="glyphicon glyphicon-globe"></span></a>{% endif %}
-					{% if project.boothNumTables and project.boothNumChairs %}<a href="{% url 'exhibitor_update_booth' pk=project.pk %}" data-toggle="tooltip" title="Booth information available"><span class="glyphicon glyphicon-home"></span></a>{% endif %}
+					{% if project.boothNumTables and project.boothNumChairs and project.boothPower and project.boothArea %}<a href="{% url 'exhibitor_update_booth' pk=project.pk %}" data-toggle="tooltip" title="Booth information available"><span class="glyphicon glyphicon-home"></span></a>{% endif %}
 					{% if project.participants.all %}<a href="{% url 'exhibitor_participants' pk=project.pk %}" data-toggle="tooltip" title="Participants available"><span class="glyphicon glyphicon-user"></span></a>{% endif %}
 					<td>
 						<a href="{% url 'exhibitor_update_general' pk=project.pk %}" data-toggle="tooltip" title="Edit exhibitor information"><span class="glyphicon glyphicon-edit"></span></a>

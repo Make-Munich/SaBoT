@@ -1,1 +1,1 @@
-You were registered with {{conference_name}}-Projects
+You were registered with {{conference_name}} Projects
